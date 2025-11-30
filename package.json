@@ -1,0 +1,13 @@
+{
+  "name": "profile-page",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "npx tailwindcss -i ./src/css/input.css -o ./css/main.css --watch",
+    "build": "npx tailwindcss -i ./src/css/input.css -o ./css/main.css --minify"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0",
+    "postcss": "^8.4.0",
+    "autoprefixer": "^10.4.0"
+  }
+}

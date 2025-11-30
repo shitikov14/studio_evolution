@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Профиль пользователя</title>
+
+  <link rel="stylesheet" href="./css/main.css" />
+  <script type="module" src="./js/profile-form.js"></script>
+  <script
+    defer
+    src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"
+  ></script>
+</head>
+
+<body class="min-h-screen text-textMain antialiased">
+  <div
+    class="lg:w-[1520px] mx-auto py-10 px-4 sm:px-6 lg:px-8"
+    x-data="profileForm()"
+  >
+    <section class="rounded-xl2 p-6 mb-6 flex items-center gap-4">
+      <div
+        class="w-24 h-24 rounded-full border border-[#979797] flex items-center justify-center text-gray-500 text-2xl shrink-0"
+      >
+        <img src="/img/upload_photo.svg" alt="avatar">
+      </div>
+      <div class="flex flex-col">
+        <h1 class="text-[#212121] text-30 text-2xl font-semibold leading-tight">Федор Семенов</h1>
+        <p class="text-[#979797] text-22 font-semibold text-textMuted">Турция, Османие</p>
+        <a
+          href="mailto:zanzak17@gmail.com"
+          class="text-[#00AFED] text-14 mt-[10px] text-sm hover:underline"
+        >
+          zanzak17@gmail.com
+        </a>
+      </div>
+    </section>
+
+    <form
+      @submit.prevent="submit"
+      class="bg-bgMain rounded-xl2 shadow-sm"
+      novalidate
+    >
+      <div class="px-6 pt-4 border-b border-borderGray">
+        <button
+          type="button"
+          class="relative pb-3 text-18 font-medium text-textMain font-semibold"
+        >
+          Ваши данные
+          <span
+            class="absolute left-0 -bottom-px h-0.5 w-full bg-brand"
+          ></span>
+        </button>
+      </div>
+
+      <div class="px-6 pb-6 pt-4 space-y-8">
+        <section>
+          <h2 class="text-[#212121] text-22 font-semibold mb-4">Ваши данные</h2>
+
+          <div class="grid gap-4 md:grid-cols-3">
+            <div>
+              <label class="block text-18 mb-10 font-semibold" for="firstName">Имя</label>
+              <input
+                id="firstName"
+                type="text"
+                x-model="form.firstName"
+                :class="inputClass('firstName')"
+                class="w-full rounded-md border px-3 rounded-10 outline-none border-borderInput py-17 pl-20 pr-20 text-16"
+              />
+              <p
+                x-show="errors.firstName"
+                x-text="errors.firstName"
+                class="mt-1 text-xs text-error"
+              ></p>
+            </div>
+
+            <div>
+              <label class="block text-18 mb-10 font-semibold" for="lastName">Фамилия</label>
+              <input
+                id="lastName"
+                type="text"
+                x-model="form.lastName"
+                :class="inputClass('lastName')"
+                class="w-full rounded-md border px-3 rounded-10 outline-none border-borderInput py-17 pl-20 pr-20 text-16"
+              />
+              <p
+                x-show="errors.lastName"
+                x-text="errors.lastName"
+                class="mt-1 text-xs text-error"
+              ></p>
+            </div>
+
+            <div>
+              <label class="block text-18 mb-10 font-semibold" for="phone">Телефон</label>
+              <input
+                id="phone"
+                type="tel"
+                x-model="form.phone"
+                :placeholder="phonePlaceholder"
+                @input="onPhoneInput($event)"
+                :class="inputClass('phone')"
+                class="w-full rounded-md border px-3 rounded-10 outline-none border-borderInput py-17 pl-20 pr-20 text-16"
+              />
+              <p
+                x-show="errors.phone"
+                x-text="errors.phone"
+                class="mt-1 text-xs text-error"
+              ></p>
+            </div>
+          </div>
+
+          <button
+            type="button"
+            class="mt-4 text-16 leading-18 bg-white inline-flex items-center rounded-full border border-gray-300 font-semibold px-4 py-2 pl-30 pr-30 pt-10 pb-10 font-medium hover:bg-gray-50"
+          >
+            Изменить пароль
+          </button>
+        </section>
+
+        <section>
+          <h2 class="text-[#212121] text-22 font-semibold mb-4">Ваше местоположение</h2>
+
+          <div class="grid gap-4 md:grid-cols-2">
+            <div>
+              <label class="block text-18 mb-10 font-semibold" for="country">Страна</label>
+              <div class="relative">
+                <select
+                  id="country"
+                  x-model="form.countryIso"
+                  @change="onCountryChange"
+                  :class="inputClass('countryIso')"
+                  class="w-full appearance-none rounded-10 rounded-md border bg-white px-3 outline-none pr-8 border-borderInput py-17 pl-20 pr-20 text-16"
+                >
+                  <template x-for="country in countries" :key="country.iso">
+                    <option :value="country.iso" x-text="country.name"></option>
+                  </template>
+                </select>
+                <span
+                  class="pointer-events-none absolute inset-y-0 right-2 flex items-center text-gray-400"
+                >
+                  ▾
+                </span>
+              </div>
+              <p
+                x-show="errors.countryIso"
+                x-text="errors.countryIso"
+                class="mt-1 text-xs text-error"
+              ></p>
+            </div>
+
+            <div>
+              <label class="block text-18 mb-10 font-semibold" for="city">Город</label>
+              <div class="relative">
+                <select
+                  id="city"
+                  x-model="form.city"
+                  :disabled="filteredCities.length === 0"
+                  :class="inputClass('city')"
+                  class="w-full appearance-none rounded-md rounded-10 py-17 pl-20 pr-20 border bg-white px-3 text-16 border-borderInput outline-none pr-8 disabled:bg-gray-100 disabled:cursor-not-allowed"
+                >
+                  <option value="" disabled>Выберите город</option>
+                  <template x-for="city in filteredCities" :key="city">
+                    <option :value="city" x-text="city"></option>
+                  </template>
+                </select>
+                <span
+                  class="pointer-events-none absolute inset-y-0 right-2 flex items-center text-gray-400"
+                >
+                  ▾
+                </span>
+              </div>
+              <p
+                x-show="errors.city"
+                x-text="errors.city"
+                class="mt-1 text-xs text-error"
+              ></p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2 class="text-[#212121] text-22 font-semibold mb-4">
+            Данные вашего заведения
+          </h2>
+
+          <div class="grid gap-4 md:grid-cols-3">
+            <div class="md:col-span-1">
+              <label class="text-18 block mb-10 font-semibold" for="venueName">
+                Название заведения
+              </label>
+              <input
+                id="venueName"
+                type="text"
+                x-model="form.venueName"
+                :class="inputClass('venueName')"
+                class="w-full rounded-md border px-3 rounded-10 outline-none border-borderInput py-17 pl-20 pr-20 text-16"
+              />
+              <p
+                x-show="errors.venueName"
+                x-text="errors.venueName"
+                class="mt-1 text-xs text-error"
+              ></p>
+            </div>
+
+            <div class="md:col-span-1">
+              <label class="text-18 block mb-10 font-semibold" for="venueAddress">
+                Адрес заведения
+              </label>
+              <input
+                id="venueAddress"
+                type="text"
+                placeholder="Введите адрес клуба"
+                x-model="form.venueAddress"
+                :class="inputClass('venueAddress')"
+                class="w-full rounded-md border px-3 rounded-10 outline-none border-borderInput py-17 pl-20 pr-20 text-16"
+              />
+              <p
+                x-show="errors.venueAddress"
+                x-text="errors.venueAddress"
+                class="mt-1 text-xs text-error"
+              ></p>
+            </div>
+
+            <div class="md:col-span-1">
+              <label class="text-18 block mb-10 font-semibold" for="venueSite">
+                Сайт заведения
+              </label>
+              <input
+                id="venueSite"
+                type="url"
+                placeholder="karaoke-empire.com"
+                x-model="form.venueSite"
+                :class="inputClass('venueSite')"
+                class="w-full rounded-md border rounded-10 px-3 outline-none border-borderInput py-17 pl-20 pr-20 text-16"
+              />
+              <p
+                x-show="errors.venueSite"
+                x-text="errors.venueSite"
+                class="mt-1 text-xs text-error"
+              ></p>
+            </div>
+          </div>
+
+          <div class="mt-4 max-w-md">
+            <label class="text-18 block mb-10 font-semibold" for="email">E-mail</label>
+            <input
+              id="email"
+              type="email"
+              x-model="form.email"
+              :class="inputClass('email')"
+              class="w-full rounded-md border px-3 rounded-10 outline-none border-borderInput py-17 pl-20 pr-20 text-16"
+            />
+            <p
+              x-show="errors.email"
+              x-text="errors.email"
+              class="mt-1 text-xs text-error"
+            ></p>
+          </div>
+        </section>
+      </div>
+
+      <div
+        class="border-t border-gray-200 px-6 py-4 flex flex-col gap-3 md:flex-row md:items-center md:justify-between"
+      >
+        <div class="flex gap-2">
+          <button
+            type="submit"
+            class="inline-flex items-center justify-center rounded-full bg-brand px-6 py-2 text-sm font-medium text-black hover:bg-brandDark transition-colors disabled:opacity-60"
+          >
+            Сохранить
+          </button>
+          <button
+            type="button"
+            @click="resetForm"
+            class="inline-flex items-center justify-center rounded-full border border-gray-300 bg-white px-6 py-2 text-sm font-medium hover:bg-gray-50"
+          >
+            Отмена
+          </button>
+        </div>
+
+        <button
+          type="button"
+          class="inline-flex items-center justify-center rounded-full border border-gray-300 bg-white px-6 py-2 text-sm font-medium hover:bg-gray-50"
+        >
+          Выйти из профиля
+        </button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
