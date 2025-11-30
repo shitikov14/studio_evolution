@@ -2,6 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Профиль пользователя</title>
 
   <link rel="stylesheet" href="./css/main.css" />
@@ -18,21 +19,21 @@
 
 <body class="min-h-screen text-textMain antialiased font-sans">
   <div
-    class="lg:w-[1520px] mx-auto py-10 px-4 sm:px-6 lg:px-8"
+    class="lg:w-[1520px] mx-auto px-4 sm:px-6 lg:px-8"
     x-data="profileForm()"
   >
-    <section class="rounded-xl2 p-6 mb-6 flex items-center gap-4">
+    <section class="rounded-xl2 p-0 md:p-6 mb-6 flex items-center gap-4 pt-30 md:pt-30">
       <div
         class="w-24 h-24 rounded-full border border-[#979797] flex items-center justify-center text-gray-500 text-2xl shrink-0"
       >
         <img src="/img/upload_photo.svg" alt="avatar">
       </div>
       <div class="flex flex-col">
-        <h1 class="text-[#212121] text-30 text-2xl font-bold leading-tight">Федор Семенов</h1>
-        <p class="text-[#979797] text-22 font-semibold text-textMuted">Турция, Османие</p>
+        <h1 class="text-[#212121] text-20 lg:text-30 text-2xl font-bold leading-tight">Федор Семенов</h1>
+        <p class="text-[#979797] text-14 lg:text-22 font-semibold text-textMuted">Турция, Османие</p>
         <a
           href="mailto:zanzak17@gmail.com"
-          class="text-[#00AFED] text-14 mt-[10px] text-sm hover:underline"
+          class="text-[#00AFED] text-10 lg:text-14 mt-[10px] text-sm hover:underline"
         >
           zanzak17@gmail.com
         </a>
@@ -41,13 +42,13 @@
 
     <form
       @submit.prevent="submit"
-      class="bg-bgMain rounded-xl2 shadow-sm"
+      class="bg-transparent md:bg-bgMain rounded-xl2 shadow-sm"
       novalidate
     >
-      <div class="px-6 pt-4 border-b border-borderGray">
+      <div class="px-0 md:px-6 lg:px-6 pt-4 border-b border-borderGray">
         <button
           type="button"
-          class="relative pb-3 text-18 font-medium text-textMain font-semibold"
+          class="relative pb-3 text-14 lg:text-18 font-medium text-textMain font-semibold"
         >
           Ваши данные
           <span
@@ -56,19 +57,19 @@
         </button>
       </div>
 
-      <div class="px-6 pb-6 pt-4 space-y-8">
+      <div class="px-0 sm:px-6 pb-6 pt-4 space-y-8">
         <section>
-          <h2 class="text-[#212121] text-22 font-bold mb-4">Ваши данные</h2>
+          <h2 class="text-[#212121] text-18 lg:text-22 font-bold mb-4">Ваши данные</h2>
 
           <div class="grid gap-4 md:grid-cols-3">
             <div>
-              <label class="block text-18 mb-10 font-semibold" for="firstName">Имя</label>
+              <label class="block text-14 lg:text-18 mb-10 font-semibold" for="firstName">Имя</label>
               <input
                 id="firstName"
                 type="text"
                 x-model="form.firstName"
                 :class="inputClass('firstName')"
-                class="w-full rounded-md border px-3 rounded-10 outline-none border-borderInput py-17 pl-20 pr-20 text-16"
+                class="w-full border px-3 rounded-10 outline-none border-borderInput py-10 lg:py-17 pl-15 lg:pl-20 pr-15 lg:pr-20 text-14 lg:text-16"
               />
               <p
                 x-show="errors.firstName"
@@ -78,13 +79,13 @@
             </div>
 
             <div>
-              <label class="block text-18 mb-10 font-semibold" for="lastName">Фамилия</label>
+              <label class="block text-14 lg:text-18 mb-10 font-semibold" for="lastName">Фамилия</label>
               <input
                 id="lastName"
                 type="text"
                 x-model="form.lastName"
                 :class="inputClass('lastName')"
-                class="w-full rounded-md border px-3 rounded-10 outline-none border-borderInput py-17 pl-20 pr-20 text-16"
+                class="w-full border px-3 rounded-10 outline-none border-borderInput py-10 lg:py-17 pl-15 lg:pl-20 pr-15 lg:pr-20 text-14 lg:text-16"
               />
               <p
                 x-show="errors.lastName"
@@ -94,7 +95,7 @@
             </div>
 
             <div>
-              <label class="block text-18 mb-10 font-semibold" for="phone">Телефон</label>
+              <label class="block text-14 lg:text-18 mb-10 font-semibold" for="phone">Телефон</label>
               <input
                 id="phone"
                 type="tel"
@@ -102,7 +103,7 @@
                 :placeholder="phonePlaceholder"
                 @input="onPhoneInput($event)"
                 :class="inputClass('phone')"
-                class="w-full rounded-md border px-3 rounded-10 outline-none border-borderInput py-17 pl-20 pr-20 text-16"
+                class="w-full border px-3 rounded-10 outline-none border-borderInput py-10 lg:py-17 pl-15 lg:pl-20 pr-15 lg:pr-20 text-14 lg:text-16"
               />
               <p
                 x-show="errors.phone"
@@ -114,25 +115,25 @@
 
           <button
             type="button"
-            class="mt-4 text-16 leading-18 bg-white inline-flex items-center rounded-full border border-gray-300 font-semibold px-4 py-2 pl-30 pr-30 pt-10 pb-10 font-medium hover:bg-hoverGray"
+            class="mt-4 text-14 lg:text-16 leading-18 bg-white inline-flex items-center rounded-full border border-gray-300 font-semibold px-4 py-2 pl-20 lg:pl-30 pr-20 lg:pr-30 pt-10 pb-10 font-semibold hover:bg-hoverGray"
           >
             Изменить пароль
           </button>
         </section>
 
         <section>
-          <h2 class="text-[#212121] text-22 font-bold mb-4">Ваше местоположение</h2>
+          <h2 class="text-[#212121] text-18 lg:text-22 font-bold mb-4">Ваше местоположение</h2>
 
           <div class="grid gap-4 md:grid-cols-2">
             <div>
-              <label class="block text-18 mb-10 font-semibold" for="country">Страна</label>
+              <label class="block text-14 lg:text-18 mb-10 font-semibold" for="country">Страна</label>
               <div class="relative">
                 <select
                   id="country"
                   x-model="form.countryIso"
                   @change="onCountryChange"
                   :class="inputClass('countryIso')"
-                  class="w-full appearance-none bg-[url('/img/arrow.svg')] bg-no-repeat bg-right rounded-10 rounded-md border bg-white px-3 outline-none pr-8 border-borderInput py-17 pl-20 pr-20 text-16"
+                  class="w-full appearance-none bg-[url('/img/arrow.svg')] bg-no-repeat bg-right rounded-10 border bg-white px-3 outline-none pr-8 border-borderInput py-10 lg:py-17 pl-15 lg:pl-20 pr-15 lg:pr-20 text-14 lg:text-16"
                 >
                   <template x-for="country in countries" :key="country.iso">
                     <option :value="country.iso" x-text="country.name"></option>
@@ -152,14 +153,14 @@
             </div>
 
             <div>
-              <label class="block text-18 mb-10 font-semibold" for="city">Город</label>
+              <label class="block text-14 lg:text-18 mb-10 font-semibold" for="city">Город</label>
               <div class="relative">
                 <select
                   id="city"
                   x-model="form.city"
                   :disabled="filteredCities.length === 0"
                   :class="inputClass('city')"
-                  class="w-full appearance-none bg-[url('/img/arrow.svg')] bg-no-repeat bg-right rounded-md rounded-10 py-17 pl-20 pr-20 border bg-white px-3 text-16 border-borderInput outline-none pr-8 disabled:bg-gray-100 disabled:cursor-not-allowed"
+                  class="w-full appearance-none bg-[url('/img/arrow.svg')] bg-no-repeat bg-right rounded-10 border bg-white py-10 lg:py-17 pl-15 lg:pl-20 pr-15 lg:pr-20 text-14 lg:text-16 border-borderInput outline-none pr-8 disabled:bg-gray-100 disabled:cursor-not-allowed"
                 >
                   <option value="" disabled>Выберите город</option>
                   <template x-for="city in filteredCities" :key="city">
@@ -181,13 +182,13 @@
         </section>
 
         <section>
-          <h2 class="text-[#212121] text-22 font-bold mb-4">
+          <h2 class="text-[#212121] text-18 lg:text-22 font-bold mb-4">
             Данные вашего заведения
           </h2>
 
           <div class="grid gap-4 md:grid-cols-3">
             <div class="md:col-span-1">
-              <label class="text-18 block mb-10 font-semibold" for="venueName">
+              <label class="text-14 lg:text-18 block mb-10 font-semibold" for="venueName">
                 Название заведения
               </label>
               <input
@@ -195,7 +196,7 @@
                 type="text"
                 x-model="form.venueName"
                 :class="inputClass('venueName')"
-                class="w-full rounded-md border px-3 rounded-10 outline-none border-borderInput py-17 pl-20 pr-20 text-16"
+                class="w-full border px-3 rounded-10 outline-none border-borderInput py-10 lg:py-17 pl-15 lg:pl-20 pr-15 lg:pr-20 text-14 lg:text-16"
               />
               <p
                 x-show="errors.venueName"
@@ -205,7 +206,7 @@
             </div>
 
             <div class="md:col-span-1">
-              <label class="text-18 block mb-10 font-semibold" for="venueAddress">
+              <label class="text-14 lg:text-18 block mb-10 font-semibold" for="venueAddress">
                 Адрес заведения
               </label>
               <input
@@ -214,7 +215,7 @@
                 placeholder="Введите адрес клуба"
                 x-model="form.venueAddress"
                 :class="inputClass('venueAddress')"
-                class="w-full rounded-md border px-3 rounded-10 outline-none border-borderInput py-17 pl-20 pr-20 text-16"
+                class="w-full border px-3 rounded-10 outline-none border-borderInput py-10 lg:py-17 pl-15 lg:pl-20 pr-15 lg:pr-20 text-14 lg:text-16"
               />
               <p
                 x-show="errors.venueAddress"
@@ -224,7 +225,7 @@
             </div>
 
             <div class="md:col-span-1">
-              <label class="text-18 block mb-10 font-semibold" for="venueSite">
+              <label class="text-14 lg:text-18 block mb-10 font-semibold" for="venueSite">
                 Сайт заведения
               </label>
               <input
@@ -233,7 +234,7 @@
                 placeholder="karaoke-empire.com"
                 x-model="form.venueSite"
                 :class="inputClass('venueSite')"
-                class="w-full rounded-md border rounded-10 px-3 outline-none border-borderInput py-17 pl-20 pr-20 text-16"
+                class="w-full border rounded-10 px-3 outline-none border-borderInput py-10 lg:py-17 pl-15 lg:pl-20 pr-15 lg:pr-20 text-14 lg:text-16"
               />
               <p
                 x-show="errors.venueSite"
@@ -244,13 +245,13 @@
           </div>
 
           <div class="mt-4 max-w-md">
-            <label class="text-18 block mb-10 font-semibold" for="email">E-mail</label>
+            <label class="text-14 lg:text-18 block mb-10 font-semibold" for="email">E-mail</label>
             <input
               id="email"
               type="email"
               x-model="form.email"
               :class="inputClass('email')"
-              class="w-full rounded-md border px-3 rounded-10 outline-none border-borderInput py-17 pl-20 pr-20 text-16"
+              class="w-full border px-3 rounded-10 outline-none border-borderInput py-10 lg:py-17 pl-15 lg:pl-20 pr-15 lg:pr-20 text-14 lg:text-16"
             />
             <p
               x-show="errors.email"
@@ -262,7 +263,7 @@
       </div>
 
       <div
-        class="border-t border-gray-200 px-6 py-4 pt-30 pb-30 flex flex-col gap-3 md:flex-row md:items-center md:justify-between"
+        class="border-t border-gray-200 px-0 md:px-6 lg:px-6 py-4 pt-30 pb-30 flex flex-col gap-3 md:flex-row md:items-center md:justify-between"
       >
         <div class="flex gap-2">
           <button

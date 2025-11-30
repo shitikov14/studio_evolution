@@ -37,18 +37,20 @@ function profileFormFactory() {
 
     inputClass(field) {
       const base =
-        "w-full rounded-md border px-3 outline-none transition-colors py-17";
+        "w-full border px-3 outline-none transition-colors py-10 md:py-17";
+    
       if (this.errors[field]) {
         return (
           base +
           " border-error focus:border-error focus:ring-1 focus:ring-error"
         );
       }
+      
       return (
         base +
         " border-borderInput focus:border-brand focus:ring-1 focus:ring-brand"
       );
-    },
+    },    
 
     onCountryChange() {
       this.form.city = "";
