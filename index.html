@@ -5,6 +5,10 @@
   <title>Профиль пользователя</title>
 
   <link rel="stylesheet" href="./css/main.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
   <script type="module" src="./js/profile-form.js"></script>
   <script
     defer
@@ -12,7 +16,7 @@
   ></script>
 </head>
 
-<body class="min-h-screen text-textMain antialiased">
+<body class="min-h-screen text-textMain antialiased font-sans">
   <div
     class="lg:w-[1520px] mx-auto py-10 px-4 sm:px-6 lg:px-8"
     x-data="profileForm()"
@@ -24,7 +28,7 @@
         <img src="/img/upload_photo.svg" alt="avatar">
       </div>
       <div class="flex flex-col">
-        <h1 class="text-[#212121] text-30 text-2xl font-semibold leading-tight">Федор Семенов</h1>
+        <h1 class="text-[#212121] text-30 text-2xl font-bold leading-tight">Федор Семенов</h1>
         <p class="text-[#979797] text-22 font-semibold text-textMuted">Турция, Османие</p>
         <a
           href="mailto:zanzak17@gmail.com"
@@ -54,7 +58,7 @@
 
       <div class="px-6 pb-6 pt-4 space-y-8">
         <section>
-          <h2 class="text-[#212121] text-22 font-semibold mb-4">Ваши данные</h2>
+          <h2 class="text-[#212121] text-22 font-bold mb-4">Ваши данные</h2>
 
           <div class="grid gap-4 md:grid-cols-3">
             <div>
@@ -110,14 +114,14 @@
 
           <button
             type="button"
-            class="mt-4 text-16 leading-18 bg-white inline-flex items-center rounded-full border border-gray-300 font-semibold px-4 py-2 pl-30 pr-30 pt-10 pb-10 font-medium hover:bg-gray-50"
+            class="mt-4 text-16 leading-18 bg-white inline-flex items-center rounded-full border border-gray-300 font-semibold px-4 py-2 pl-30 pr-30 pt-10 pb-10 font-medium hover:bg-hoverGray"
           >
             Изменить пароль
           </button>
         </section>
 
         <section>
-          <h2 class="text-[#212121] text-22 font-semibold mb-4">Ваше местоположение</h2>
+          <h2 class="text-[#212121] text-22 font-bold mb-4">Ваше местоположение</h2>
 
           <div class="grid gap-4 md:grid-cols-2">
             <div>
@@ -128,7 +132,7 @@
                   x-model="form.countryIso"
                   @change="onCountryChange"
                   :class="inputClass('countryIso')"
-                  class="w-full appearance-none rounded-10 rounded-md border bg-white px-3 outline-none pr-8 border-borderInput py-17 pl-20 pr-20 text-16"
+                  class="w-full appearance-none bg-[url('/img/arrow.svg')] bg-no-repeat bg-right rounded-10 rounded-md border bg-white px-3 outline-none pr-8 border-borderInput py-17 pl-20 pr-20 text-16"
                 >
                   <template x-for="country in countries" :key="country.iso">
                     <option :value="country.iso" x-text="country.name"></option>
@@ -137,7 +141,7 @@
                 <span
                   class="pointer-events-none absolute inset-y-0 right-2 flex items-center text-gray-400"
                 >
-                  ▾
+                  
                 </span>
               </div>
               <p
@@ -155,7 +159,7 @@
                   x-model="form.city"
                   :disabled="filteredCities.length === 0"
                   :class="inputClass('city')"
-                  class="w-full appearance-none rounded-md rounded-10 py-17 pl-20 pr-20 border bg-white px-3 text-16 border-borderInput outline-none pr-8 disabled:bg-gray-100 disabled:cursor-not-allowed"
+                  class="w-full appearance-none bg-[url('/img/arrow.svg')] bg-no-repeat bg-right rounded-md rounded-10 py-17 pl-20 pr-20 border bg-white px-3 text-16 border-borderInput outline-none pr-8 disabled:bg-gray-100 disabled:cursor-not-allowed"
                 >
                   <option value="" disabled>Выберите город</option>
                   <template x-for="city in filteredCities" :key="city">
@@ -165,7 +169,6 @@
                 <span
                   class="pointer-events-none absolute inset-y-0 right-2 flex items-center text-gray-400"
                 >
-                  ▾
                 </span>
               </div>
               <p
@@ -178,7 +181,7 @@
         </section>
 
         <section>
-          <h2 class="text-[#212121] text-22 font-semibold mb-4">
+          <h2 class="text-[#212121] text-22 font-bold mb-4">
             Данные вашего заведения
           </h2>
 
@@ -259,19 +262,19 @@
       </div>
 
       <div
-        class="border-t border-gray-200 px-6 py-4 flex flex-col gap-3 md:flex-row md:items-center md:justify-between"
+        class="border-t border-gray-200 px-6 py-4 pt-30 pb-30 flex flex-col gap-3 md:flex-row md:items-center md:justify-between"
       >
         <div class="flex gap-2">
           <button
             type="submit"
-            class="inline-flex items-center justify-center rounded-full bg-brand px-6 py-2 text-sm font-medium text-black hover:bg-brandDark transition-colors disabled:opacity-60"
+            class="inline-flex items-center justify-center rounded-full bg-brand px-6 py-2 pl-30 pr-30 pt-10 pb-10 text-16 font-semibold font-medium text-black hover:bg-brandDark transition-colors disabled:opacity-60"
           >
             Сохранить
           </button>
           <button
             type="button"
             @click="resetForm"
-            class="inline-flex items-center justify-center rounded-full border border-gray-300 bg-white px-6 py-2 text-sm font-medium hover:bg-gray-50"
+            class="inline-flex items-center justify-center rounded-full border border-gray-300 bg-white px-6 py-2 pl-30 pr-30 pt-10 pb-10 text-16 font-semibold font-medium hover:bg-gray-50"
           >
             Отмена
           </button>
@@ -279,7 +282,7 @@
 
         <button
           type="button"
-          class="inline-flex items-center justify-center rounded-full border border-gray-300 bg-white px-6 py-2 text-sm font-medium hover:bg-gray-50"
+          class="inline-flex items-center justify-center rounded-full border border-gray-300 bg-white px-6 py-2 pl-30 pr-30 pt-10 pb-10 text-16 font-semibold font-medium hover:bg-gray-50"
         >
           Выйти из профиля
         </button>

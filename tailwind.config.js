@@ -6,6 +6,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["Open Sans", "sans-serif"],
+      },
       colors: {
         brand: "#FFCE00",
         white: "#FFFFFF",
@@ -15,6 +18,7 @@ module.exports = {
         textMuted: "#828282",
         error: "#EB5757",
         borderInput: "#212121",
+        hoverGray: "#D4D4D4",
       },
       borderRadius: {
         xl2: "20px",
