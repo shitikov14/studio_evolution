@@ -1,8 +1,8 @@
 # Profile Page
 
 Implementation of the “Profile” page according to the provided Figma design.  
-Built using **Tailwind CSS** and **Alpine.js**.  
-Includes dynamic country → city selection, phone number masking, and full form validation.
+Built using Tailwind CSS and Alpine.js.  
+Includes dynamic country, city selection, phone number masking, and full form validation.
 
 ---
 
